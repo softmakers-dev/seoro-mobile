@@ -14,11 +14,11 @@ const SermonNavigator = () => {
     return (
         <SermonStack.Navigator>
             <SermonStack.Screen
-                name='Sermons'
+                name={'Sermons'}
                 component={SermonsScreen}
                 />
             <SermonStack.Screen
-                name='SermonWatch'
+                name={'SermonWatch'}
                 component={SermonWatchScreen}
                 />
         </SermonStack.Navigator>
@@ -31,11 +31,11 @@ const ScriptureNavigator = () => {
     return (
         <ScriptureStack.Navigator>
             <ScriptureStack.Screen
-                name='Scriptures'
+                name={'Scriptures'}
                 component={ScripturesScreen}
                 />
             <ScriptureStack.Screen
-                name='ScriptureDetail'
+                name={'ScriptureDetail'}
                 component={ScriptureDetailScreen}
                 />
         </ScriptureStack.Navigator>
@@ -48,7 +48,7 @@ const IntroductionNavigator = () => {
     return(
         <IntroductionStack.Navigator>
             <IntroductionStack.Screen
-                name='Introduction'
+                name={'Introduction'}
                 component={IntroductionScreen}
                 />
         </IntroductionStack.Navigator>
@@ -63,15 +63,15 @@ const MainNavigator = () => {
             initialRouteName='Sermons'
         >
             <MainStack.Screen
-                name='Sermons'
+                name={'Sermons'}
                 component={SermonNavigator}
                 />
             <MainStack.Screen
-                name='Scriptures'
+                name={'Scriptures'}
                 component={ScriptureNavigator}
                 />
             <MainStack.Screen
-                name='Introduction'
+                name={'Introduction'}
                 component={IntroductionNavigator}
                 />
         </MainStack.Navigator>
@@ -84,14 +84,14 @@ const AppNavigator = () => {
     return(
         <NavigationContainer>
             <RootStack.Navigator
-                initialRouteName='Entrance'
+                initialRouteName={'Entrance'}
             >
                 <RootStack.Screen
-                    name='Entrance'
+                    name={'Entrance'}
                     component={EntranceScreen}
                 />
                 <RootStack.Screen
-                    name='Main'
+                    name={'Main'}
                     component={MainNavigator}
                     />
             </RootStack.Navigator>
