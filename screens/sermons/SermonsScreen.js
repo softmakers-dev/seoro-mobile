@@ -1,55 +1,79 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, StyleSheet, SafeAreaView, Button, Alert} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, Button, Alert, FlatList} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
+import {ScreenWidth} from '../../helpers';
+import Sermon from '../../components/Sermon';
 
-const data = [
+const items = [
     {
         seq: 1,
-        id: 'IkxviSSN4NM'
+        id: 'IkxviSSN4NM',
+        DATE: '2021-12-01',
+        BOOK_AND_CHAPTER: '요엘 1장',
+        TITLE: '여호와의 날과 공동체적인 구원'
     },
     {
         seq: 2,
-        id: 'vmy7rDOPiRY'
+        id: 'vmy7rDOPiRY',
+        DATE: '2021-12-01',
+        BOOK_AND_CHAPTER: '히브리서 11장',
+        TITLE: '하나님을 기쁘시게하는 믿음'
     },
     {
         seq: 3,
-        id: 'WCHQ_snpInc'
+        id: 'WCHQ_snpInc',
+        DATE: '2021-11-01',
+        BOOK_AND_CHAPTER: '사사기 11장',
+        TITLE: '내리셨다 들어올리시는 하나님의 구원'
     }
 ];
 
-const SermonsScreen = () => {
+const SermonsScreen = ({navigation, route}) => {
 
-    const [playing, setPlaying] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
+    const _keyExtractor = (item) => item.seq;
+    const _renderItem = ({ item, index }) => (
+        <View>
+            <Sermon data={item} navigation={navigation} route={route}/>
+        </View>
+    )
 
-    const onStateChange = useCallback((state) => {
-        if (state === "ended") {
-            setPlaying(false);
-            Alert.alert("video has finished playing!");
-        }
-    }, []);
-
-    const togglePlaying = useCallback(() => {
-        setPlaying((prev) => !prev);
-    }, []);
+    const _onRefresh = () => {
+        setRefreshing(true);
+    }
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <SafeAreaView>
-                <View>
-                    <YoutubePlayer
-                        webViewStyle={{opacity: 0.99}}
-                        height={500}
-                        play={playing}
-                        videoId={data[0].id}
-                        onChangeState={onStateChange}
-                    />
-                </View>
-                <Button title={playing ? "pause" : "play"} onPress={togglePlaying} />
+        <View style={styles.container}>
+            <SafeAreaView style={{flex:1}}>
+                <FlatList
+                    // style={{paddingBottom:20}}
+                    data={items}
+                    keyExtractor={_keyExtractor}
+                    renderItem={_renderItem}
+                    refreshing={refreshing}
+                    onRefresh={_onRefresh}
+                    showsVerticalScrollIndicator={false}
+                    //onEndReachedThreshold={1}
+                    //onEndReached={this.onEndReached}
+                />
             </SafeAreaView>
         </View>
     );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        // alignItems: 'center',
+        backgroundColor: 'white',
+        // paddingBottom:20
+    },
+    moreListButton: {
+        width: ScreenWidth*0.9,
+        marginVertical: 10,
+        backgroundColor: '#5664C0',
+    },
+});
 
 export default SermonsScreen;

@@ -1,11 +1,50 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, TouchableOpacity, Linking} from 'react-native';
 
-const Scripture = () => {
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-    return <Text>Scripture</Text>
+const Scripture = (params) => {
+
+    const item = params.data;
+    const _onPress = () => {
+        Linking.openURL(item.url);
+    }
+
+    return (
+        <TouchableOpacity activeOpacity={0.5} onPress={_onPress}>
+            <View style={styles.itemContainer}>
+                <View style={{flexDirection:'column', justifyContent:'center', alignItems:'flex-start', borderWidth:0}}>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={{fontSize:16}}>{item.title}</Text>
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={{fontSize:16}}>{item.bookAndChapter}</Text>
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={{fontSize:16}}>{item.hymn}</Text>
+                    </View>
+                    <View style={{flexDirection:'row'}}>
+                        <Text style={{fontSize:16}}>{item.date}</Text>
+                    </View>
+                </View>
+            </View>
+        </TouchableOpacity>
+    )
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    itemContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        width: SCREEN_WIDTH*0.9,
+        marginTop: 10,
+        padding: 10,
+        borderWidth: 2,
+        borderColor: '#aaaaaa',
+        backgroundColor: 'white',
+        alignSelf: 'center',
+    }
+});
 
 export default Scripture;
