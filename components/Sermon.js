@@ -8,7 +8,7 @@ const Sermon = (params) => {
 
     const item = params.data;
     const _onPress = () => {
-        params.navigation.navigate('SermonWatch', { id: item.id });
+        params.navigation.navigate('SermonWatch', { id: item.watchId });
     }
 
     return (
@@ -16,13 +16,13 @@ const Sermon = (params) => {
             <View style={styles.itemContainer}>
                 <View style={{flexDirection:'column', justifyContent:'center', alignItems:'flex-start', borderWidth:0}}>
                     <View style={{flexDirection:'row'}}>
-                        <Text style={{fontSize:16}}>{item.TITLE}</Text>
+                        <Text style={{fontSize:16}}>{item.title}</Text>
                     </View>
                     <View style={{flexDirection:'row'}}>
-                        <Text style={{fontSize:16}}>{item.BOOK_AND_CHAPTER}</Text>
+                        <Text style={{fontSize:16}}>{item.bookAndChapter}</Text>
                     </View>
                     <View style={{flexDirection:'row'}}>
-                        <Text style={{fontSize:16}}>{item.DATE}</Text>
+                        <Text style={{fontSize:16}}>{item.date}</Text>
                     </View>
                 </View>
             </View>

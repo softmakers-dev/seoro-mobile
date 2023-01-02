@@ -8,6 +8,9 @@ import ScriptureDetailScreen from './screens/scriptures/ScriptureDetailScreen';
 import IntroductionScreen from './screens/introduction/IntroductionScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import EntranceScreen from './screens/entrance/EntranceScreen';
+import { Icon } from '@ui-kitten/components';
+import {StyleSheet} from 'react-native';
+import {ScreenWidth} from './helpers';
 
 const HEADER_BG_COLOR = '#8585E1';
 
@@ -114,7 +117,11 @@ const MainNavigator = () => {
             screenOptions={{
                 headerShown: false,
                 headerBackTitle: null,
-                headerTruncatedBackTitle: null
+                headerTruncatedBackTitle: null,
+                tabBarActiveTintColor: HEADER_BG_COLOR,
+                tabBarLabelStyle: {
+                    fontSize:15
+                }
             }}
         >
             <MainStack.Screen
@@ -122,7 +129,10 @@ const MainNavigator = () => {
                 component={SermonNavigator}
                 options={{
                     tabBarLabel: '설교',
-                    headerShown: false
+                    headerShown: false,
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon style={styles.icon} fill='#8F9BB3' name='cast-outline'/>
+                    )
                 }}
                 />
             <MainStack.Screen
@@ -130,7 +140,10 @@ const MainNavigator = () => {
                 component={ScriptureNavigator}
                 options={{
                     tabBarLabel: '묵상',
-                    headerShown: false
+                    headerShown: false,
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon style={styles.icon} fill='#8F9BB3' name='book-open-outline'/>
+                    )
                 }}
                 />
             <MainStack.Screen
@@ -138,7 +151,10 @@ const MainNavigator = () => {
                 component={IntroductionNavigator}
                 options={{
                     tabBarLabel: '교회소개',
-                    headerShown: false
+                    headerShown: false,
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon style={styles.icon} fill='#8F9BB3' name='list-outline'/>
+                    )
                 }}
                 />
         </MainStack.Navigator>
@@ -156,6 +172,7 @@ const AppNavigator = () => {
                 <RootStack.Screen
                     name={'Entrance'}
                     component={EntranceScreen}
+                    options={{headerShown: false}}
                 />
                 <RootStack.Screen
                     name={'Main'}
@@ -166,5 +183,12 @@ const AppNavigator = () => {
         </NavigationContainer>
     )
 }
+
+const styles = StyleSheet.create({
+    icon: {
+        width: 25,
+        height: 25
+    },
+});
 
 export default AppNavigator;

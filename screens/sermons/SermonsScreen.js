@@ -1,46 +1,65 @@
-import React, {useCallback, useState} from 'react';
-import {View, Text, StyleSheet, SafeAreaView, Button, Alert, FlatList} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {View, Text, StyleSheet, SafeAreaView, Alert, FlatList} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import {ScreenWidth} from '../../helpers';
 import Sermon from '../../components/Sermon';
-
-const items = [
-    {
-        seq: 1,
-        id: 'IkxviSSN4NM',
-        DATE: '2021-12-01',
-        BOOK_AND_CHAPTER: '요엘 1장',
-        TITLE: '여호와의 날과 공동체적인 구원'
-    },
-    {
-        seq: 2,
-        id: 'vmy7rDOPiRY',
-        DATE: '2021-12-01',
-        BOOK_AND_CHAPTER: '히브리서 11장',
-        TITLE: '하나님을 기쁘시게하는 믿음'
-    },
-    {
-        seq: 3,
-        id: 'WCHQ_snpInc',
-        DATE: '2021-11-01',
-        BOOK_AND_CHAPTER: '사사기 11장',
-        TITLE: '내리셨다 들어올리시는 하나님의 구원'
-    }
-];
+import firestore from '@react-native-firebase/firestore';
+import {Button} from 'react-native-elements';
 
 const SermonsScreen = ({navigation, route}) => {
 
     const [refreshing, setRefreshing] = useState(false);
-    const _keyExtractor = (item) => item.seq;
+    const _keyExtractor = (item, index) => index.toString();
+    const [items, setItems] = useState([]);
+    const [fetchCount, setFetchCount] = useState(5);
+
+    const fetchData = () => {
+
+        const refSermons = firestore()
+            .collection('sermons')
+            .orderBy('date', 'desc')
+            .limit(fetchCount)
+            .get()
+            .then(querySnapShot => {
+                console.log("sermon querySnapShot size : " + querySnapShot.size);
+                let newItems = [];
+                querySnapShot.forEach(documentSnapShot => {
+
+                    if(newItems.indexOf(documentSnapShot.data()) === -1) {
+                        newItems.push(documentSnapShot.data());
+                    }
+                });
+                setItems(newItems);
+            });
+    };
+
+    const _onMoreList = () => {
+        setFetchCount(fetchCount + 5);
+        fetchData();
+    }
+
     const _renderItem = ({ item, index }) => (
         <View>
             <Sermon data={item} navigation={navigation} route={route}/>
+            {
+                (items.length > 0) && (items.length-1 == index) && (
+                    <View style={{alignItems: 'center'}}>
+                        <Button
+                            buttonStyle={styles.moreListButton}
+                            containerStyle={{paddingLeft:5, paddingRight:5}}
+                            title={`${fetchCount}주 이전 설교 더보기`}
+                            onPress={_onMoreList} />
+                    </View>
+                )
+            }
         </View>
     )
 
     const _onRefresh = () => {
         setRefreshing(true);
     }
+
+    useEffect( fetchData, []);
 
     return (
         <View style={styles.container}>

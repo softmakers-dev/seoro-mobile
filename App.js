@@ -13,12 +13,18 @@ import {
 } from 'react-native';
 
 import AppNavigator from './routes';
+import {EvaIconsPack} from '@ui-kitten/eva-icons';
+import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
 
 const App: () => Node = () => {
 
   return (
       <>
-        <AppNavigator />
+        <IconRegistry icons={EvaIconsPack} />
+        <ApplicationProvider {...eva} theme={eva.light}>
+          <AppNavigator />
+        </ApplicationProvider>
       </>
   );
 };
