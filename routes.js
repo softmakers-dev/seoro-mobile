@@ -11,6 +11,7 @@ import EntranceScreen from './screens/entrance/EntranceScreen';
 import { Icon } from '@ui-kitten/components';
 import {StyleSheet} from 'react-native';
 import {ScreenWidth} from './helpers';
+import FoundationIcon from 'react-native-vector-icons/Foundation';
 
 const HEADER_BG_COLOR = '#8585E1';
 
@@ -37,7 +38,21 @@ const SermonNavigator = () => {
             <SermonStack.Screen
                 name='Sermons'
                 component={SermonsScreen}
-                options={{title: '설교듣기'}}
+                options={({route}) => ({
+                    title: '설교듣기',
+                    headerRight: () => (
+                        <FoundationIcon
+                            style={{marginRight: 26}}
+                            name="refresh"
+                            size={30}
+                            color="#ffffff"
+                            onPress={() => {
+                                const {onRefresh} = route.params;
+                                onRefresh();
+                            }}
+                        />
+                    )
+                })}
                 />
             <SermonStack.Screen
                 name='SermonWatch'
@@ -71,7 +86,21 @@ const ScriptureNavigator = () => {
             <ScriptureStack.Screen
                 name='Scriptures'
                 component={ScripturesScreen}
-                options={{title: '묵상나눔'}}
+                options={({route}) => ({
+                    title: '묵상나눔',
+                    headerRight: () => (
+                        <FoundationIcon
+                            style={{marginRight: 26}}
+                            name="refresh"
+                            size={30}
+                            color="#ffffff"
+                            onPress={() => {
+                                const {onRefresh} = route.params;
+                                onRefresh();
+                            }}
+                        />
+                    )
+                })}
                 />
             <ScriptureStack.Screen
                 name='ScriptureDetail'
@@ -167,7 +196,7 @@ const AppNavigator = () => {
     return(
         <NavigationContainer>
             <RootStack.Navigator
-                initialRouteName={'Entrance'}
+                initialRouteName={'Main'}
             >
                 <RootStack.Screen
                     name={'Entrance'}

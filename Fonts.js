@@ -1,0 +1,27 @@
+export const Fonts = {
+    BCcardB: "BCcardB",
+    BCcardL: "BCcardL",
+    IBMBold: "IBMPlexSansKR-Bold",
+    IBMExtraLight: "IBMPlexSansKR-ExtraLight",
+    IBMLight: "IBMPlexSansKR-Light",
+    IBMMedium: "IBMPlexSansKR-Medium",
+    IBMRegular: "IBMPlexSansKR-Regular",
+    IBMSemiBold: "IBMPlexSansKR-SemiBold",
+    IBMText: "IBMPlexSansKR-Text",
+    IBMThin: "IBMPlexSansKR-Thin",
+    payboocBold: "paybooc_Bold",
+    payboocExtraBold: "paybooc_ExtraBold",
+    payboocLight: "paybooc_Light",
+    payboocMedium: "paybooc_Medium",
+    CafeO: "Cafe24Ohsquare",
+    CafeOa: "Cafe24Ohsquareair",
+    CafeOs: "Cafe24Ssurround",
+    NEXON1B: "NEXONLv1GothicBold",
+    NEXON1L: "NEXONLv1GothicLight",
+    NEXON1R: "NEXONLv1GothicRegular",
+    WemakepriceB: "Wemakeprice-Bold",
+    WemakepriceR: "Wemakeprice-Regular",
+    WemakepriceSB: "Wemakeprice-SemiBold",
+
+
+};

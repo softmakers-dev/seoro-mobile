@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {ListItem} from '@ui-kitten/components';
+import {Fonts} from '../../Fonts';
+import {normalize} from '../../helpers/util';
 
 const navigationScreenList = [
         {
@@ -27,9 +29,9 @@ const IntroductionScreen = ({navigation}) => {
                         containerStyle={{borderBottomWidth: 1, paddingRight: 22}}
                         key={i}
                         title={l.title}
-                        chevron={true}
                         titleStyle={styles.ListText}
-                        //rightIcon={{ name: 'chevron-right'}}
+                        chevron={true}
+                        rightIcon={{ name: 'chevron-right'}}
                         onPress={() => navigation.navigate(`${l.screen_name}`)}
                     />
                     ))}
@@ -38,7 +40,8 @@ const IntroductionScreen = ({navigation}) => {
     )
 }
 
-const styles = StyleSheet.create({container: {
+const styles = StyleSheet.create({
+    container: {
         flex: 1,
         backgroundColor: '#ffffff',
         padding: 10,

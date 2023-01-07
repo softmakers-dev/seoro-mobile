@@ -5,28 +5,26 @@ import {ScreenWidth} from '../../helpers';
 import firestore from '@react-native-firebase/firestore';
 import {Button} from 'react-native-elements';
 
-const ScripturesScreen = () => {
+const ScripturesScreen = ({navigation}) => {
 
     const [refreshing, setRefreshing] = useState(false);
     const [items, setItems] = useState([]);
-    const [fetchCount, setFetchCount] = useState(7);
+    const [fetchCount, setFetchCount] = useState(5);
 
     const _keyExtractor = (item, index) => index.toString();
 
-    const _onRefresh = () => {
-        setRefreshing(true);
-    }
+    const fetchData = (currFetchCound) => {
 
-    const fetchData = () => {
-
+        console.log("currFetchCound : " + currFetchCound);
         const refScriptures = firestore()
             .collection('scriptures')
             .orderBy('date', 'desc')
-            .limit(fetchCount)
+            .limit(currFetchCound)
             .get()
             .then(querySnapShot => {
 
                 let newItems = [];
+                console.log("querySchedule.size : " + querySnapShot.size);
                 querySnapShot.forEach(documentSnapShot => {
 
                     if(newItems.indexOf(documentSnapShot.data()) === -1) {
@@ -34,12 +32,20 @@ const ScripturesScreen = () => {
                     }
                 });
                 setItems(newItems);
+                setRefreshing(false);
             });
     };
 
-    const _onMoreList = () => {
-        setFetchCount(fetchCount + 7);
-        fetchData();
+    const _onRefresh = async () => {
+        await setRefreshing(true);
+        await fetchData(fetchCount);
+    }
+
+    const _onMoreList = async () => {
+        const newFetchCount = fetchCount + 5;
+        await setFetchCount(newFetchCount);
+        await setRefreshing(true);
+        await fetchData(newFetchCount);
     }
 
     const _renderItem = ({item, index}) => (
@@ -59,7 +65,11 @@ const ScripturesScreen = () => {
         </View>
     )
 
-    useEffect( fetchData, []);
+    // useEffect( fetchData, []);
+    useEffect(() => {
+        fetchData(fetchCount);
+        navigation.setParams({onRefresh: _onRefresh});
+    },[navigation])
 
     return (
         <View style={styles.container}>

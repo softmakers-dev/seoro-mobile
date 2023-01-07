@@ -13,12 +13,12 @@ const SermonsScreen = ({navigation, route}) => {
     const [items, setItems] = useState([]);
     const [fetchCount, setFetchCount] = useState(5);
 
-    const fetchData = () => {
+    const fetchData = (currFetchCound) => {
 
         const refSermons = firestore()
             .collection('sermons')
             .orderBy('date', 'desc')
-            .limit(fetchCount)
+            .limit(currFetchCound)
             .get()
             .then(querySnapShot => {
                 console.log("sermon querySnapShot size : " + querySnapShot.size);
@@ -30,12 +30,15 @@ const SermonsScreen = ({navigation, route}) => {
                     }
                 });
                 setItems(newItems);
+                setRefreshing(false);
             });
     };
 
-    const _onMoreList = () => {
-        setFetchCount(fetchCount + 5);
-        fetchData();
+    const _onMoreList = async () => {
+        const newFetchCount = fetchCount + 5;
+        await setFetchCount(newFetchCount);
+        await setRefreshing(true);
+        await fetchData(newFetchCount);
     }
 
     const _renderItem = ({ item, index }) => (
@@ -57,9 +60,13 @@ const SermonsScreen = ({navigation, route}) => {
 
     const _onRefresh = () => {
         setRefreshing(true);
+        fetchData(fetchCount);
     }
 
-    useEffect( fetchData, []);
+    useEffect( () => {
+        fetchData(fetchCount);
+        navigation.setParams({onRefresh: _onRefresh});
+    }, [navigation]);
 
     return (
         <View style={styles.container}>
