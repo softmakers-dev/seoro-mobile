@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {ListItem} from '@ui-kitten/components';
 import {Fonts} from '../../Fonts';
 import {normalize} from '../../helpers/util';
+import {ListItem} from 'react-native-elements';
 
 const navigationScreenList = [
         {
@@ -28,12 +28,14 @@ const IntroductionScreen = ({navigation}) => {
                     <ListItem
                         containerStyle={{borderBottomWidth: 1, paddingRight: 22}}
                         key={i}
-                        title={l.title}
-                        titleStyle={styles.ListText}
-                        chevron={true}
                         rightIcon={{ name: 'chevron-right'}}
                         onPress={() => navigation.navigate(`${l.screen_name}`)}
-                    />
+                    >
+                        <ListItem.Content>
+                            <ListItem.Title>{l.title}</ListItem.Title>
+                        </ListItem.Content>
+                        <ListItem.Chevron />
+                    </ListItem>
                     ))}
             </View>
         </View>

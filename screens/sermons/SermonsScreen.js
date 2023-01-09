@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
     moreListButton: {
         width: ScreenWidth*0.9,
         marginVertical: 10,
-        backgroundColor: '#5664C0',
+        // backgroundColor: '#5664C0',
+        backgroundColor: '#1E7B1E',
     },
 });
 

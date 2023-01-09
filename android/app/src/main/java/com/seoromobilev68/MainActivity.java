@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import androidx.core.splashscreen.SplashScreen;
+
 public class MainActivity extends ReactActivity {
 
   /**
@@ -44,6 +46,8 @@ public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 
+    // Handle the splash screen transition.
+    SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
     super.onCreate(null);
   }
 }

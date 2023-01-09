@@ -13,7 +13,8 @@ import {StyleSheet} from 'react-native';
 import {ScreenWidth} from './helpers';
 import FoundationIcon from 'react-native-vector-icons/Foundation';
 
-const HEADER_BG_COLOR = '#8585E1';
+// const HEADER_BG_COLOR = '#8585E1';
+const HEADER_BG_COLOR = '#32CD32';
 
 const SermonStack = createNativeStackNavigator();
 const SermonNavigator = () => {
@@ -196,7 +197,7 @@ const AppNavigator = () => {
     return(
         <NavigationContainer>
             <RootStack.Navigator
-                initialRouteName={'Main'}
+                initialRouteName={'Entrance'}
             >
                 <RootStack.Screen
                     name={'Entrance'}
