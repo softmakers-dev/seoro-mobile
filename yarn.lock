@@ -4500,6 +4500,11 @@
   "resolved" "https://registry.npmjs.org/invert-kv/-/invert-kv-3.0.1.tgz"
   "version" "3.0.1"
 
+"ios-deploy@^1.12.1":
+  "integrity" "sha512-xK+oinl5DvsoFZRG0WsuOkzXblbw30xD90eboVszeHoEp8l5len9QIy74XD+/6EAop3/tA52KMdVPp5/TZLrlw=="
+  "resolved" "https://registry.npmjs.org/ios-deploy/-/ios-deploy-1.12.1.tgz"
+  "version" "1.12.1"
+
 "ip@^1.1.5":
   "integrity" "sha512-PuExPYUiu6qMBQb4l06ecm6T6ujzhmh+MeJcW9wa89PoAz5pvd4zPgN5WJV104mb6S2T1AwNIAaB70JNrLQWhg=="
   "resolved" "https://registry.npmjs.org/ip/-/ip-1.1.8.tgz"

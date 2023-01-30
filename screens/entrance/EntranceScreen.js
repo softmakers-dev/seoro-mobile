@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#32CD32',
+        backgroundColor: '#ffffff',
     },
     logo: {
         width: SCREEN_WIDTH * 0.54,

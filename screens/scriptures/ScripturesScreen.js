@@ -33,7 +33,10 @@ const ScripturesScreen = ({navigation}) => {
                 });
                 setItems(newItems);
                 setRefreshing(false);
-            });
+            })
+            .catch(err => {
+                console.error(err);
+            });  ;
     };
 
     const _onRefresh = async () => {

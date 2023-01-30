@@ -31,7 +31,10 @@ const SermonsScreen = ({navigation, route}) => {
                 });
                 setItems(newItems);
                 setRefreshing(false);
-            });
+            })
+            .catch(err => {
+                console.error(err);
+            });  ;
     };
 
     const _onMoreList = async () => {

@@ -47,7 +47,8 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
 
     // Handle the splash screen transition.
-    SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+//    SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+    androidx.core.splashscreen.SplashScreen.installSplashScreen(this); //
     super.onCreate(null);
   }
 }
