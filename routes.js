@@ -12,6 +12,7 @@ import { Icon } from '@ui-kitten/components';
 import {StyleSheet} from 'react-native';
 import {ScreenWidth} from './helpers';
 import FoundationIcon from 'react-native-vector-icons/Foundation';
+import AppVersionScreen from './screens/introduction/AppVersionScreen';
 
 // const HEADER_BG_COLOR = '#8585E1';
 const HEADER_BG_COLOR = '#32CD32';
@@ -134,6 +135,11 @@ const IntroductionNavigator = () => {
                 component={IntroductionScreen}
                 options={{title: '교회소개'}}
                 />
+            <IntroductionStack.Screen
+                name="AppVersion"
+                component={AppVersionScreen}
+                options={{title: '앱 버전'}}
+            />
         </IntroductionStack.Navigator>
     )
 }

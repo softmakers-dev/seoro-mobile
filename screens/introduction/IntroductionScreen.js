@@ -7,14 +7,18 @@ import {ListItem} from 'react-native-elements';
 const navigationScreenList = [
         {
             title: '비전과 핵심가치',
-            screen_name: 'AppVersion',
+            screen_name: 'Vision',
         },
         {
             title: '오시는 길',
-            screen_name: 'AppVersion',
+            screen_name: 'Location',
         },
         {
             title: '연락처',
+            screen_name: 'ContactPoint',
+        },
+        {
+            title: '버전정보',
             screen_name: 'AppVersion',
         }
     ]

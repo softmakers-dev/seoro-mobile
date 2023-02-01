@@ -13,6 +13,7 @@ const EntranceScreen = ({navigation}) => {
 
     const _navigatePage = () => {
         try {
+            console.log("Enterance screen : " + CurrentAppVersion);
             AsyncStorage.setItem('INSTALLED_APP_VERSION', CurrentAppVersion);
             AsyncStorage.setItem('DIS_TIMER', '1');
 
