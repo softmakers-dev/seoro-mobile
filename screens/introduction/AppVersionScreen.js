@@ -8,16 +8,21 @@ const AppVersionScreen = () => {
 
     const [appVersion, setAppVersion] = useState('');
 
-    useEffect(() => {
+    const _getAppVersion = async () => {
 
         try {
-            const latestAppVersion = AsyncStorage.getItem('INSTALLED_APP_VERSION');
+            const latestAppVersion = await AsyncStorage.getItem('INSTALLED_APP_VERSION');
             console.log(latestAppVersion);
             setAppVersion(latestAppVersion);
         }
         catch (err) {
             console.log('[useEffect] ' + err);
         }
+    }
+
+    useEffect(() => {
+
+        _getAppVersion();
     },[])
 
     return(

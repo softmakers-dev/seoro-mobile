@@ -8,7 +8,7 @@ import {name as appName} from './app.json';
 import { LogBox } from 'react-native';
 
 LogBox.ignoreLogs([
-    'Non-serializable values were found in the navigation state',
+    'Non-serializable values were found in the navigation state','EventEmitter'
 ]);
 
 AppRegistry.registerComponent(appName, () => App);
