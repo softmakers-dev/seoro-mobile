@@ -1,6 +1,6 @@
 import {Dimensions, Platform} from 'react-native';
 
-const CurrentAppVersion = '0.1.1';
+const CurrentAppVersion = '0.2.1';
 const FromDateBase = 7;
 const Screen = Dimensions.get('window');
 const ScreenWidth = Screen.width;

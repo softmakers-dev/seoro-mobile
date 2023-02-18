@@ -128,18 +128,23 @@ const IntroductionNavigator = () => {
                 },
                 headerBackTitle: null,
                 headerTruncatedBackTitle: null,
-                headerBackTitleVisible: false
+                headerBackTitleVisible: false,
             }}
         >
             <IntroductionStack.Screen
                 name='Introduction'
                 component={IntroductionScreen}
-                options={{title: '교회소개'}}
+                options={{
+                    title: '교회소개',
+                }}
                 />
             <IntroductionStack.Screen
                 name="AppVersion"
                 component={AppVersionScreen}
-                options={{headerTitle: '앱 버전'}}
+                options={{
+                    headerTitle: '앱 버전',
+                    headerBackVisible: false
+                }}
             />
         </IntroductionStack.Navigator>
     )
