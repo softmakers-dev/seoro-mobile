@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     logo: {
-        width: SCREEN_WIDTH * 0.54,
-        height: SCREEN_WIDTH * 0.54 / 2,
+        width: SCREEN_WIDTH * 0.74,
+        height: SCREEN_WIDTH * 0.74 * 0.6, // image size : 800 * 485 -> 0.60625
         resizeMode: 'contain',
         // marginTop: SCREEN_HEIGHT * 0.2,
         // marginBottom: 10,
