@@ -3,11 +3,10 @@
  * https://github.com/facebook/react-native
  *
  * @format
- * @flow strict-local
  */
 
 import React from 'react';
-import type {Node} from 'react';
+import type {PropsWithChildren} from 'react';
 import {
   StyleSheet,
 } from 'react-native';
@@ -17,7 +16,7 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 
-const App: () => Node = () => {
+function App(): React.JSX.Element {
 
   return (
       <>
@@ -27,7 +26,7 @@ const App: () => Node = () => {
         </ApplicationProvider>
       </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   sectionContainer: {
